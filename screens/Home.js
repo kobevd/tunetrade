@@ -1,8 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import { NavigationContainer } from '@react-navigation/native';
+import Header from '../components/Header';
+import MusicItem from '../components/MusicItem';
+
 
 
 
@@ -24,12 +27,42 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
 
-   <TouchableOpacity onPress={() => {
-    navigation.navigate('Details')
-   }}> 
-   
-   <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40 }}>Click Me</Text>
-   </TouchableOpacity>
+<Header />
+<ScrollView style={styles.scroll}>
+
+      {/* ... other components like Header and Highlight */}
+      <MusicItem
+        albumCover={require('../img/album-cover-1.png')}
+        songTitle="BLUE"
+        artistName="Far Caspian"
+        price="$60"
+      />
+      <MusicItem
+        albumCover={require('../img/album-cover-2.png')}
+        songTitle="YEEEE"
+        artistName="T-Smoke"
+        share="5x"
+        price="$25"
+      />
+      <MusicItem
+        albumCover={require('../img/album-cover-3.png')}
+        songTitle="How u feel?"
+        artistName="Destroy Lonely"
+        price="$50"
+      />
+      <MusicItem
+        albumCover={require('../img/album-cover-4.png')}
+        songTitle="Miles Away"
+        artistName="Dina Ayada"
+        price="$50"
+      />
+      
+      {/* ... additional components or MusicItems */}
+    
+      </ScrollView>
+
+ 
+
     </View>
   );
 }
@@ -41,16 +74,12 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#0F1320',
   },
+  scroll: {
+    flex: 1
+  }
 
-  image: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#0553',
-  },
 });
 
 

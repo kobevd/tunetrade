@@ -1,41 +1,55 @@
+// Profile.js
+import React from 'react';
+import { View, FlatList, StyleSheet, ScrollView } from 'react-native';
+import SongCard from '../components/SongCard';
+import Bio from '../components/Bio';
+import LatestSong from '../components/LatestSong';
 
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { NavigationContainer } from '@react-navigation/native';
+const songsData = [
+  { key: 'orion', title: 'Orion', price: '$30 - 10%' },
+  { key: 'free_fall', title: 'Free Fall', price: '$15 - 5%' },
+  { key: 'everdawn', title: 'Everdawn', price: '$50 - 25%' },
+  { key: 'butterflies', title: 'Butterflies', price: '$30 - 10%' },
+  { key: 'never_ending', title: 'Never Ending ', price: '$15 - 5%' },
+  { key: 'uranus', title: 'Uranus', price: '$50 - 25%' },
+  { key: 'on_the_go', title: 'On The Go', price: '$50 - 25%' },
+  { key: 'blur', title: 'Blur', price: '$50 - 25%' },
+  { key: 'meaning', title: 'Meaning', price: '$50 - 25%' },
+  // ... more song data
+];
 
-
-
-export default function Profile({navigation}) {
-
-  
-
+const Profile = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40 }}>Profile Screen</Text>
-      <TouchableOpacity onPress={() => {
-    navigation.navigate('Settingss')
-   }}> 
-   
-   <Text style={{ fontFamily: 'Inter_900Black', fontSize: 40 }}>Click Me</Text>
-   </TouchableOpacity>
-
-
-      
+    <ScrollView style={styles.scroll}>
+      <Bio/>
+      <LatestSong text="Latest Songs*" />
+      <FlatList
+        data={songsData}
+        renderItem={({ item }) => (
+          <SongCard songKey={item.key} songTitle={item.title} price={item.price} />
+        )}
+        keyExtractor={(item) => item.key}
+        numColumns={3} // Set the number of columns for the grid
+        contentContainerStyle={styles.songsContainer}
+      />
+    </ScrollView>
     </View>
   );
+};
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0F1320',
+  },
+  songsContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  scroll: {
+    flex: 1
+  }
+});
 
-
-
-
-  
-}
-
-
-
-
-
-
-
-
+export default Profile;

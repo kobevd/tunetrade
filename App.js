@@ -1,50 +1,68 @@
 import Home from './screens/Home';
 import Details from './screens/Details';
+import Profile from './screens/Profile'; // Assuming you have a Profile screen
+import Settings from './screens/Settings';
 import { NavigationContainer } from '@react-navigation/native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer>
-      
       <Tab.Navigator
-  screenOptions={({ route }) => ({
-    tabBarIcon: ({ focused, color, size }) => {
-      let iconName;
-
-      if (route.name === 'TuneTrade') {
-        iconName = focused ? 'music' : 'music';  // Here 'music' is an example icon name from FontAwesome
-      } else if (route.name === 'Details') {
-        iconName = focused ? 'info-circle' : 'info-circle'; // Here 'info-circle' is an example icon name from FontAwesome
-      }
-
-      return <FontAwesome name={iconName} size={size} color={color} />;
-    },
-  })}
-  tabBarOptions={{
-    activeTintColor: 'tomato',  // Color for the active tab icon
-    inactiveTintColor: 'gray',  // Color for the inactive tab icon
-  }}
->
-  <Tab.Screen name="TuneTrade" component={Home} options={{ title: 'My home' , headerStyle: { backgroundColor: '#f4511e' }, headerTintColor: '#fff', headerTitleStyle: { fontWeight: 'bold' } }} />
-  <Tab.Screen name="Details" component={Details} options={{headerShown: false}} />
-</Tab.Navigator>
-
+        screenOptions={({ route }) => ({
+          tabBarActiveTintColor: '#0F1320',
+          tabBarInactiveTintColor: 'gray',
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === 'TuneTrade') {
+              iconName = 'music';
+            } else if (route.name === 'Details') {
+              iconName = 'list-alt'; // Example icon for details
+            } else if (route.name === 'Profile') {
+              iconName = 'user'; // Example icon for profile
+            } else if (route.name === 'Settings') {
+              iconName = 'cog'; // Example icon for settings
+            }
+            // You can return any component that you like here!
+            return <FontAwesome name={iconName} size={size} color={color} />;
+          },
+        })}
+      >
+        <Tab.Screen
+          name="TuneTrade"
+          component={Home}
+          options={{
+            title: 'Home',
+            headerStyle: { backgroundColor: '#0F1320' },
+            headerTintColor: '#fff',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+    
+        <Tab.Screen
+          name="Profile"
+          component={Profile} // Make sure you have a Profile component
+          options={{
+            title: 'Profile',
+            headerStyle: { backgroundColor: '#0F1320' },
+            headerTintColor: '#fff',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: 'Investments',
+            headerStyle: { backgroundColor: '#0F1320' },
+            headerTintColor: '#fff',
+            headerTitleStyle: { fontWeight: 'bold' },
+          }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-
-
-
-
-
-
