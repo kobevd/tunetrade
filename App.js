@@ -1,5 +1,4 @@
 import Home from './screens/Home';
-import Details from './screens/Details';
 import Profile from './screens/Profile'; // Assuming you have a Profile screen
 import Settings from './screens/Settings';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,8 +18,6 @@ export default function App() {
             let iconName;
             if (route.name === 'TuneTrade') {
               iconName = 'music';
-            } else if (route.name === 'Details') {
-              iconName = 'list-alt'; // Example icon for details
             } else if (route.name === 'Profile') {
               iconName = 'user'; // Example icon for profile
             } else if (route.name === 'Settings') {
