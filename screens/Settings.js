@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import Dropdown from '../components/Dropdown';
 import SongInfoCard from '../components/SongInfoCard';
+import ChartComponent from '../components/ChartComponent';
 
 
 
@@ -22,6 +23,9 @@ const Settings = () => {
     { label: 'This Month', value: 'thisMonth' },
     // ... add more timeframes as needed
   ];
+
+  const chartData = [45, 56, 55, 60, 70, 80, 85]; // Replace with your data
+  const chartLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]; // Replace with your labels
 
   return (
     <ScrollView style={styles.container}>
@@ -47,6 +51,8 @@ const Settings = () => {
         price="$60"
         investments="50x"
       />
+      <ChartComponent data={chartData} labels={chartLabels} />
+      
     </ScrollView>
   );
 };
