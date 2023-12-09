@@ -2,41 +2,72 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const SummaryCard = ({ summary }) => (
-  <View style={styles.summaryCard}>
-    <Text style={styles.summaryTitle}>*Everdawn*</Text>
-    <Text style={styles.summaryEarnings}>{summary}</Text>
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>See history</Text>
-    </TouchableOpacity>
-  </View>
-);
+const SummaryCard = ({ songTitle, earnings, investments, onPressSeeHistory }) => {
+  return (
+    <View style={styles.cardContainer}>
+      <Text style={styles.allTimeEarningsTitle}>All Time Earnings</Text>
+      <Text style={styles.songTitle}>{songTitle}</Text>
+      <View style={styles.detailsContainer}>
+        <View style={styles.detail}>
+          <Text style={styles.detailTitle}>Earnings</Text>
+          <Text style={styles.detailValue}>{earnings}</Text>
+        </View>
+        <View style={styles.detail}>
+          <Text style={styles.detailTitle}>Investments</Text>
+          <Text style={styles.detailValue}>{investments}</Text>
+        </View>
+      </View>
+      <TouchableOpacity style={styles.historyButton} onPress={onPressSeeHistory}>
+        <Text style={styles.historyButtonText}>See History</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  summaryCard: {
-    backgroundColor: '#262626',
-    borderRadius: 20,
-    padding: 15,
-    marginHorizontal: 20,
-    marginBottom: 20,
+  cardContainer: {
+    backgroundColor: '#262626', // Replace with your card background color
+    borderRadius: 10,
+    padding: 20,
+    margin: 20,
   },
-  summaryTitle: {
-    fontFamily: 'SpaceGrotesk',
-    fontSize: 24,
-    color: '#FFFFFF',
-    marginBottom: 5,
-  },
-  summaryEarnings: {
+  allTimeEarningsTitle: {
     fontFamily: 'SpaceGrotesk',
     fontSize: 20,
-    color: '#00FF00', // Replace with your earnings highlight color
-    marginBottom: 5,
+    color: '#FFFFFF',
+    marginBottom: 10,
   },
-  button: {
-    alignSelf: 'center',
-    marginTop: 10,
+  songTitle: {
+    fontFamily: 'SpaceGrotesk',
+    fontSize: 18,
+    color: '#1F1F1F',
+    marginBottom: 10,
   },
-  buttonText: {
+  detailsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  detail: {
+    alignItems: 'center',
+  },
+  detailTitle: {
+    fontFamily: 'SpaceGrotesk',
+    fontSize: 16,
+    color: '#FF1493', // Replace with your detail title color (e.g., pink)
+  },
+  detailValue: {
+    fontFamily: 'SpaceGrotesk',
+    fontSize: 20,
+    color: '#FFFFFF',
+  },
+  historyButton: {
+    backgroundColor: '#FF1493', // Replace with your button background color (e.g., pink)
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  historyButtonText: {
     fontFamily: 'SpaceGrotesk',
     fontSize: 16,
     color: '#FFFFFF',

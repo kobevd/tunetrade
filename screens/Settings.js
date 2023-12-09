@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import Dropdown from '../components/Dropdown';
 import SongInfoCard from '../components/SongInfoCard';
 import ChartComponent from '../components/ChartComponent';
+import SummaryCard from '../components/SummaryCard';
 
 
 
@@ -52,7 +53,15 @@ const Settings = () => {
         investments="50x"
       />
       <ChartComponent data={chartData} labels={chartLabels} />
-      
+      <SummaryCard 
+  songTitle="Everdawn"
+  earnings="$1000"
+  investments="50x"
+  onPressSeeHistory={() => {
+    // Handle the 'See History' button press
+  }}
+/>
+
     </ScrollView>
   );
 };
