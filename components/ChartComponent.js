@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   chartTitle: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 18,
     color: '#FFFFFF',
     marginBottom: 10,

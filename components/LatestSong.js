@@ -8,7 +8,6 @@ const LatestSong = ({ text }) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 24,
     color: '#9CE1F5', // Replace with the color you want for the title text
     paddingHorizontal: 25, // Alignment padding

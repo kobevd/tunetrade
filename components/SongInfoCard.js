@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#262626', // Replace with your card background color
+    backgroundColor: '#262626',
     borderRadius: 10,
-    padding: 20, // Increased padding
-    marginBottom: 20, // Increased space to the next item
+    padding: 20, // Standardized padding
+    margin: 20, // Standardized margin
   },
   songImage: {
     width: 80, // Increased image size
@@ -49,13 +49,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   songTitle: {
-    fontFamily: 'SpaceGrotesk',
     color: '#FFF', // Replace with your title color
     fontSize: 18, // Increased font size
     marginBottom: 4, // Space between title and artist name
   },
   artistName: {
-    fontFamily: 'SpaceGrotesk',
     color: '#FFF', // Replace with your artist name color
     fontSize: 16, // Set font size for the artist name
   },
@@ -74,12 +72,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   priceText: {
-    fontFamily: 'SpaceGrotesk',
     color: '#FFF', // Replace with your price text color
     fontSize: 16, // Increased font size
   },
   investmentsText: {
-    fontFamily: 'SpaceGrotesk',
     color: '#FFF', // Replace with your investments text color
     fontSize: 16, // Increased font size
   },

@@ -53,14 +53,12 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   title: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 16,
     color: '#FFF',
     marginTop: 8,
     textAlign: 'center',
   },
   price: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 14,
     color: '#FFF',
     marginBottom: 8,
@@ -70,7 +68,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   latestSongsTitle: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 24,
     color: '#E1E1E1', // Adjust the color as desired
     marginLeft: cardMargin, // Align with the cards

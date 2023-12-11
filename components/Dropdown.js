@@ -48,9 +48,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 0.5,
- 
     borderRadius: 8,
-    color: 'white',
     paddingRight: 30, // to ensure the text is never behind the icon
     backgroundColor: 'transparent',
   },

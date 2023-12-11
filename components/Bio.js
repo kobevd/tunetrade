@@ -66,20 +66,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 18, // Reduced font size
     color: '#9CE1F5',
     padding: 2,
   },
   title: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 16, // Reduced font size
     color: '#FFFFFF',
     marginVertical: 2,
     padding: 2,
   },
   description: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 12, // Reduced font size
     color: '#FFFFFF',
     padding: 2,

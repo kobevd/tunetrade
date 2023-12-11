@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   headerText: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 32,
     color: '#FFF', // Replace with the exact color from your design
     position: 'absolute', // Position absolutely to ensure it's at the top
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
     top: 230, // Adjust as necessary to place it over the image
     width: '100%',
     alignItems: 'center',
-    fontFamily: 'SpaceGrotesk',
     fontSize: 25,
     color: '#FFF',
     textAlign: 'left',

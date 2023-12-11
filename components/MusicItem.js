@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 20,
-    paddingHorizontal: 16, // To allow for whitespace on both sides
-    marginHorizontal: 40, // This adds the 40 pixels of whitespace on both sides
-    backgroundColor: '#252E56', // Set a background color to separate items
+    paddingHorizontal: 20, // To allow for whitespace on both sides
+    marginHorizontal: 20, // This adds the 40 pixels of whitespace on both sides
+    backgroundColor: '#262626', // Set a background color to separate items
     marginBottom: 10, // Add space between the items
     borderRadius: 10, // Match your design's border radius
   },
@@ -37,17 +37,14 @@ const styles = StyleSheet.create({
     marginLeft: 12, // Space between image and text
   },
   songTitle: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 18,
     color: '#FFF',
   },
   artistName: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 16,
     color: '#A7A7A7', // Adjust the color to match the design
   },
   priceTag: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 18,
     color: '#FFF',
   },

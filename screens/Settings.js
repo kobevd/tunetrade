@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    paddingTop: 20,
   },
   dropdownsContainer: {
     flexDirection: 'row', // Align dropdowns in a row

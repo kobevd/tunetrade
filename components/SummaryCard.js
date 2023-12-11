@@ -32,13 +32,11 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   allTimeEarningsTitle: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 20,
     color: '#FFFFFF',
     marginBottom: 10,
   },
   songTitle: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 18,
     color: '#1F1F1F',
     marginBottom: 10,
@@ -52,12 +50,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   detailTitle: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 16,
     color: '#FF1493', // Replace with your detail title color (e.g., pink)
   },
   detailValue: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 20,
     color: '#FFFFFF',
   },
@@ -68,7 +64,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   historyButtonText: {
-    fontFamily: 'SpaceGrotesk',
     fontSize: 16,
     color: '#FFFFFF',
   },
