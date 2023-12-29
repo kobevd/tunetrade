@@ -8,11 +8,11 @@ const LatestSong = ({ text }) => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 24,
+    fontSize: 32,
     color: '#9CE1F5', // Replace with the color you want for the title text
-    paddingHorizontal: 25, // Alignment padding
-    marginTop: 32, // Space from the top, adjust as needed
-    marginBottom: 16, // Space before the content below, adjust as needed
+    paddingHorizontal: 20, // Alignment padding
+    marginTop: 10, // Space from the top, adjust as needed
+    marginBottom: 30, // Space before the content below, adjust as needed
   },
 });
 

@@ -2,9 +2,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MusicItem = ({ albumCover, songTitle, artistName, price }) => {
+const MusicItem = ({ albumCover, songTitle, artistName, price, onPress }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={albumCover} style={styles.albumCover} />
       <View style={styles.textContainer}>
         <Text style={styles.songTitle}>{songTitle}</Text>
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     borderRadius: 10, // Match your design's border radius
   },
   albumCover: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     borderRadius: 10,
   },
   textContainer: {

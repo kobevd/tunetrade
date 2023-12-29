@@ -1,26 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import { NavigationContainer } from '@react-navigation/native';
-import Header from '../components/Header';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import MusicItem from '../components/MusicItem';
-
-
-
+import Header from '../components/Header';
 
 export default function Home({ navigation }) {
+  const navigateToSongPlayer = () => {
+    navigation.navigate('SongPlayer', { 
+      songTitle: "FANTA MIX", 
+      artistName: "Saino" 
+    });
+  };
 
-
-
-
-  let [fontsLoaded, fontError] = useFonts({
-    Inter_900Black,
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
 
   
 
@@ -30,19 +21,22 @@ export default function Home({ navigation }) {
 <Header />
 <ScrollView style={styles.scroll}>
 
-      {/* ... other components like Header and Highlight */}
-      <MusicItem
-        albumCover={require('../img/album-cover-1.png')}
-        songTitle="BLUE"
-        artistName="Far Caspian"
-        price="$60"
-      />
+<Text style={styles.title}>Top songs*</Text>
+
+        {/* First Music Item with onPress handler */}
+          <MusicItem
+            albumCover={require('../img/album-cover-1.png')}
+            songTitle="FANTA MIX"
+            artistName="Saino"
+            price="$25"
+            onPress={navigateToSongPlayer}
+          />
       <MusicItem
         albumCover={require('../img/album-cover-2.png')}
         songTitle="YEEEE"
         artistName="T-Smoke"
         share="5x"
-        price="$25"
+        price="$20"
       />
       <MusicItem
         albumCover={require('../img/album-cover-3.png')}
@@ -54,11 +48,21 @@ export default function Home({ navigation }) {
         albumCover={require('../img/album-cover-4.png')}
         songTitle="Miles Away"
         artistName="Dina Ayada"
+        price="$30"
+      />
+      <MusicItem
+        albumCover={require('../img/album-cover-5.png')}
+        songTitle="Wired Love"
+        artistName="Saino"
+        price="$45"
+      />
+      <MusicItem
+        albumCover={require('../img/album-cover-6.jpg')}
+        songTitle="DIXI"
+        artistName="DAMP (ft.LARS45)"
         price="$50"
       />
       
-      {/* ... additional components or MusicItems */}
-    
       </ScrollView>
 
  
@@ -78,7 +82,15 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1
-  }
+  },
+  title: {
+    fontSize: 32,
+    color: '#9CE1F5', // Replace with the color you want for the title text
+    paddingHorizontal: 20, // Alignment padding
+    marginTop: 10, // Space from the top, adjust as needed
+    marginBottom: 30, // Space before the content below, adjust as needed
+  },
+  
 
 });
 

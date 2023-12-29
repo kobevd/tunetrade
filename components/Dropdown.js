@@ -14,7 +14,7 @@ const Dropdown = ({ onValueChange, items, placeholder, value }) => (
       placeholder={placeholder}
       value={value}
       Icon={() => {
-        return <Icon name="md-arrow-down" size={20} color="white" />;
+        return <Icon name="md-arrow-down" size={15} color="white" />;
       }}
     />
   </View>
@@ -23,11 +23,11 @@ const Dropdown = ({ onValueChange, items, placeholder, value }) => (
 const styles = StyleSheet.create({
   dropdownContainer: {
     paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: '#FFF',
+    paddingHorizontal: 20,
+    backgroundColor: '#262626',
     borderRadius: 8,
     minWidth: 150,
-    marginHorizontal: 10,
+    marginHorizontal: 50,
   },
 });
 

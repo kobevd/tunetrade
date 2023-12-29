@@ -1,13 +1,32 @@
-import Home from './screens/Home';
+import React, { useState } from 'react';
+import { AppRegistry } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
+import HomeStack from './screens/HomeStack';
 import Profile from './screens/Profile'; // Assuming you have a Profile screen
 import Settings from './screens/Settings';
-import { NavigationContainer } from '@react-navigation/native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SongPlayerScreen  from './screens/SongPlayerScreen';
+import LoginScreen from './components/LoginScreen'; // Adjust the path as needed
+
+
+
+
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  if (!isLoggedIn) {
+    return <LoginScreen onLogin={handleLogin} />;
+  }
+  
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -19,18 +38,17 @@ export default function App() {
             if (route.name === 'TuneTrade') {
               iconName = 'music';
             } else if (route.name === 'Profile') {
-              iconName = 'user'; // Example icon for profile
+              iconName = 'user';
             } else if (route.name === 'Settings') {
-              iconName = 'cog'; // Example icon for settings
+              iconName = 'cog';
             }
-            // You can return any component that you like here!
             return <FontAwesome name={iconName} size={size} color={color} />;
           },
         })}
       >
         <Tab.Screen
           name="TuneTrade"
-          component={Home}
+          component={HomeStack}
           options={{
             title: 'Home',
             headerStyle: { backgroundColor: '#0F1320' },
@@ -38,10 +56,9 @@ export default function App() {
             headerTitleStyle: { fontWeight: 'bold' },
           }}
         />
-    
         <Tab.Screen
           name="Profile"
-          component={Profile} // Make sure you have a Profile component
+          component={Profile}
           options={{
             title: 'Profile',
             headerStyle: { backgroundColor: '#0F1320' },

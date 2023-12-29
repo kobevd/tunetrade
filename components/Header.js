@@ -8,7 +8,6 @@ const Header = () => {
         source={require('../img/header-image.png')} // Make sure the image is in the correct path
         style={styles.headerImage}
       />
-      <Text style={styles.highlightText}>HIGHLIGHTS: Everdawn - Saino</Text>
     </View>
   );
 };
