@@ -1,32 +1,44 @@
 import React, { useState } from 'react';
-import { AppRegistry } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import HomeStack from './screens/HomeStack';
-import Profile from './screens/Profile'; // Assuming you have a Profile screen
+import Profile from './screens/Profile';
 import Settings from './screens/Settings';
-import SongPlayerScreen  from './screens/SongPlayerScreen';
-import LoginScreen from './components/LoginScreen'; // Adjust the path as needed
-
-
-
-
+import SongPlayerScreen from './screens/SongPlayerScreen';
+import LoginScreen from './components/LoginScreen';
+import RegistrationScreen from './components/RegistrationScreen'; // Import RegistrationScreen
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [isRegistering, setIsRegistering] = useState(false); // State to track registration screen
 
-  const handleLogin = () => {
+  const handleLogin = (user) => {
     setIsLoggedIn(true);
+    setLoggedInUser(user);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setLoggedInUser(null);
+  };
+
+  const handleRegisterToggle = () => {
+    setIsRegistering(!isRegistering); // Toggle registration screen
   };
 
   if (!isLoggedIn) {
-    return <LoginScreen onLogin={handleLogin} />;
+    if (isRegistering) {
+      return <RegistrationScreen onRegister={handleRegisterToggle} />;
+    } else {
+      return <LoginScreen onLogin={handleLogin} onRegister={handleRegisterToggle} />;
+    }
   }
-  
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -58,7 +70,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Profile"
-          component={Profile}
+          children={() => <Profile user={loggedInUser} onLogout={handleLogout} />}
           options={{
             title: 'Profile',
             headerStyle: { backgroundColor: '#0F1320' },

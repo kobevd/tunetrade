@@ -1,16 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Audio } from 'expo-av';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-
-// Import or define the audio file URI
-const audioUri = require('../songs/Fanta.mp3'); // Update the path to your audio file
+const audioUri = require('../songs/New.wav'); // Update with your audio file path
 
 const SongPlayerScreen = ({ route }) => {
   const [sound, setSound] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const songDetails = route?.params || { songTitle: 'Unknown', artistName: 'Unknown Artist' };
+  const spinValue = useRef(new Animated.Value(0)).current;  // For vinyl spin animation
+  const rotation = useRef(Animated.loop(
+    Animated.timing(
+      spinValue,
+      {
+        toValue: 1,
+        duration: 6000,  // Adjust the duration for your desired spin speed
+        useNativeDriver: true,
+        isInteraction: false,
+      }
+    )
+  )).current;
 
   useEffect(() => {
     const loadAudio = async () => {
@@ -30,6 +40,15 @@ const SongPlayerScreen = ({ route }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isPlaying) {
+      rotation.start();
+    } else {
+      rotation.stop();
+      spinValue.setValue(0); // Reset rotation
+    }
+  }, [isPlaying]);
+
   const togglePlayPause = async () => {
     if (sound) {
       if (isPlaying) {
@@ -45,12 +64,20 @@ const SongPlayerScreen = ({ route }) => {
     }
   };
 
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{songDetails.songTitle}</Text>
       <Text style={styles.artist}>{songDetails.artistName}</Text>
 
-      <Image source={require('../img/album-cover-1.png')} style={styles.songCover} />
+      <Animated.Image
+        source={require('../img/album-cover-1.png')}
+        style={[styles.songCover, { transform: [{ rotate: spin }] }]}
+      />
 
       <View style={styles.controls}>
         <TouchableOpacity style={styles.controlButton}>
@@ -67,7 +94,6 @@ const SongPlayerScreen = ({ route }) => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -77,13 +103,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: '#FFF',
-    marginBottom: 10,
+    color: '#9CE1F5',
+    marginBottom: 5,
   },
   artist: {
     fontSize: 16,
     color: '#FFF',
-    marginBottom: 10,
+    marginBottom: 15,
   },
   songCover: {
     width: 300,
@@ -101,4 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SongPlayerScreen;
+export default SongPlayerScreen; 

@@ -18,7 +18,7 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
 
-<Header />
+<Header/>
 <ScrollView style={styles.scroll}>
 
 <Text style={styles.title}>Top songs*</Text>

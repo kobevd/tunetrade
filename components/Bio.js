@@ -3,23 +3,23 @@ import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const cardPadding = 30; // Padding inside the card
-const imageSize = 100; // Increased size of the profile image
+const cardPadding = 30;
+const imageSize = 100;
 
-const Bio = () => {
+const Bio = ({ user }) => {
+  const userName = user ? user.username : 'Unknown Artist';
+  const userType = user && user.is_artist === "1" ? 'Artist' : 'User';
+  const userBio = 'A placeholder bio until you have real bio data';
+
   return (
     <View style={styles.container}>
-      {/* Background image for the entire screen */}
       <Image source={require('../img/header-image.png')} style={styles.backgroundImage} />
-      {/* Bio card */}
       <View style={styles.card}>
         <Image source={require('../img/profile.png')} style={styles.profileImage} />
         <View style={styles.textContainer}>
-          <Text style={styles.name}>[YOUR_NAME]</Text>
-          <Text style={styles.title}>Artist</Text>
-          <Text style={styles.description}>
-            A crazy creative producer/artist looking for investments and music enjoyers
-          </Text>
+          <Text style={styles.name}>{userName}</Text>
+          <Text style={styles.title}>{userType}</Text>
+          <Text style={styles.description}>{userBio}</Text>
         </View>
       </View>
     </View>

@@ -1,39 +1,52 @@
-// LoginScreen.js
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 
-const LoginScreen = ({ onLogin }) => {
+const LoginScreen = ({ onLogin, onRegister }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // Fetch users data when the component mounts
+    fetch('https://jouwnaam.vaw.be/api.php')
+      .then(response => response.json())
+      .then(json => setUsers(json.users))
+      .catch(err => console.error('Error fetching users:', err));
+  }, []);
 
   const handleLogin = () => {
-    // Dummy login function
-    onLogin(username, password);
+    // Find user with matching username
+    const user = users.find(u => u.username === username);
+
+    if (user) {
+      // Since password comparison isn't possible here, we just pass the user data
+      onLogin(user); 
+    } else {
+      Alert.alert('Login Failed', 'User not found or password is incorrect');
+    }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-
       <TextInput
         style={styles.input}
         placeholder="Username or Email"
         value={username}
         onChangeText={setUsername}
-        placeholderTextColor="#A9A9A9" // Placeholder text color
+        placeholderTextColor="#A9A9A9"
       />
-
       <TextInput
         style={styles.input}
         placeholder="Password"
+        secureTextEntry
         value={password}
         onChangeText={setPassword}
-        secureTextEntry
-        placeholderTextColor="#A9A9A9" // Placeholder text color
+        placeholderTextColor="#A9A9A9"
       />
-
       <View style={styles.buttonContainer}>
         <Button title="Log In" onPress={handleLogin} color="#0F1320" />
+        <Button title="Add User" onPress={onRegister} />  
       </View>
     </View>
   );
@@ -44,7 +57,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF', // Assuming a white background
+    backgroundColor: '#FFF',
     padding: 20,
   },
   title: {

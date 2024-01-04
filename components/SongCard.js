@@ -1,40 +1,24 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
-
-
-// Assume you have a mapping of song keys to image files
-const imageSources = {
-  'orion': require('../img/orion.png'),
-  'free_fall': require('../img/free_fall.png'),
-  'everdawn': require('../img/everdawn.png'),
-  'uranus': require('../img/uranus.png'),
-  'on_the_go': require('../img/on_the_go.png'),
-  'butterflies': require('../img/butterflies.png'),
-  'never_ending': require('../img/never_ending.png'),
-  'blur': require('../img/blur.png'),
-  'meaning': require('../img/meaning.png'),
-  
-  
-  // ... other songs
-};
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
-// Update the cardWidth calculation for larger cards
-const cardMargin = 10; // Margin on each side of a card
-const totalPaddingAndMargin = 80 + (cardMargin * 2 * 3); // Total padding and margin for all cards
-const cardWidth = (windowWidth - totalPaddingAndMargin) / 2.5; // Increase the width of each card
+const cardMargin = 10;
+const totalPaddingAndMargin = 80 + (cardMargin * 2 * 3);
+const cardWidth = (windowWidth - totalPaddingAndMargin) / 2.5;
 
+const SongCard = ({ songTitle, price, imageUrl }) => {
+  // Directly using the image URL from the CMS
+  const imageSource = { uri: `https://jouwnaam.vaw.be/pages/uploads/covers/${imageUrl}` };
 
-
-const SongCard = ({ songKey, songTitle, price }) => {
   return (
     <View style={[styles.card, { width: cardWidth }]}>
-      <Image source={imageSources[songKey]} style={styles.image} />
+      <Image source={imageSource} style={styles.image} />
       <Text style={styles.title}>{songTitle}</Text>
       <Text style={styles.price}>{price}</Text>
     </View>
-  ); 
+  );
 };
+
 
 const styles = StyleSheet.create({
   card: {
@@ -48,7 +32,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%', 
-    height: cardWidth, 
+    height: cardWidth, // Adjust height based on card width
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
@@ -63,15 +47,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     marginBottom: 8,
     textAlign: 'center',
-  },
-  latestSongsContainer: {
-    marginTop: 20,
-  },
-  latestSongsTitle: {
-    fontSize: 24,
-    color: '#E1E1E1', // Adjust the color as desired
-    marginLeft: cardMargin, // Align with the cards
-    marginBottom: 10, // Space between the title and the cards
   },
 });
 

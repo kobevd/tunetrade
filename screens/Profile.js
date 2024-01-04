@@ -1,54 +1,113 @@
-// Profile.js
-import React from 'react';
-import { View, FlatList, StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, FlatList, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
 import SongCard from '../components/SongCard';
 import Bio from '../components/Bio';
 import LatestSong from '../components/LatestSong';
 
-const songsData = [
-  { key: 'orion', title: 'Orion', price: '$30 - 10%' },
-  { key: 'free_fall', title: 'Free Fall', price: '$15 - 5%' },
-  { key: 'everdawn', title: 'Everdawn', price: '$50 - 25%' },
-  { key: 'butterflies', title: 'Butterflies', price: '$30 - 10%' },
-  { key: 'never_ending', title: 'Never Ending ', price: '$15 - 5%' },
-  { key: 'uranus', title: 'Uranus', price: '$50 - 25%' },
-  { key: 'on_the_go', title: 'On The Go', price: '$50 - 25%' },
-  { key: 'blur', title: 'Blur', price: '$50 - 25%' },
-  { key: 'meaning', title: 'Meaning', price: '$50 - 25%' },
-  // ... more song data
-];
+const Profile = ({ user, onLogout }) => {
+  const [songs, setSongs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const Profile = () => {
+  useEffect(() => {
+    fetch('https://jouwnaam.vaw.be/api.php')
+      .then(response => response.json())
+      .then(json => {
+        setSongs(json.songs);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>Error fetching data: {error.message}</Text>
+      </View>
+    );
+  }
+
+  // Extracting the first and second songs' data
+  const firstSong = songs.length > 0 ? songs[0] : null;
+  const secondSong = songs.length > 1 ? songs[1] : null;
+  const thirdSong = songs.length > 2 ? songs[2] : null; // Get the second song
+
   return (
     <View style={styles.container}>
-    <ScrollView style={styles.scroll}>
-      <Bio/>
-      <LatestSong text="Latest Songs*" />
-      <FlatList
-        data={songsData}
-        renderItem={({ item }) => (
-          <SongCard songKey={item.key} songTitle={item.title} price={item.price} />
-        )}
-        keyExtractor={(item) => item.key}
-        numColumns={3} // Set the number of columns for the grid
-        contentContainerStyle={styles.songsContainer}
-      />
-    </ScrollView>
+      <ScrollView style={styles.scroll}>
+        <Bio user={user} />
+        <LatestSong text="Latest Songs*" />
+        <View style={styles.songsRow}>
+          {firstSong && (
+            <SongCard 
+              songKey={firstSong.songs_id} 
+              songTitle={firstSong.title} 
+              price={`$${firstSong.price}`} 
+              imageUrl="meaning.png"
+            />
+          )}
+          {secondSong && (
+            <SongCard 
+              songKey={secondSong.songs_id} 
+              songTitle={secondSong.title} 
+              price={`$${secondSong.price}`}
+              imageUrl="butterflies.png"
+            />
+          )}
+        {thirdSong && (
+            <SongCard 
+              songKey={thirdSong.songs_id} 
+              songTitle={thirdSong.title} 
+              price={`$${thirdSong.price}`}
+              imageUrl="blur.png"
+            />
+          )}
+        </View>
+      </ScrollView>
+      <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
+        <Text style={styles.logoutButtonText}>Log Out</Text>
+      </TouchableOpacity>
     </View>
   );
-};
+}; 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
-  },
-  songsContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingBottom: 10,
   },
   scroll: {
     flex: 1
+  },
+  songsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logoutButton: {
+    backgroundColor: '#0F1320', // Button background color
+    padding: 10, // Button padding
+    borderRadius: 5, // Button border radius
+    marginTop: 20, // Margin top
+    marginHorizontal: 20, // Horizontal margin
+    alignItems: 'center', // Center text horizontally
+  },
+  logoutButtonText: {
+    color: '#FFFFFF', // Text color
+    fontSize: 16, // Text font size
   }
 });
 
