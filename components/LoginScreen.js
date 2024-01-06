@@ -28,10 +28,10 @@ const LoginScreen = ({ onLogin, onRegister }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Login to TuneTrade</Text>
       <TextInput
         style={styles.input}
-        placeholder="Username or Email"
+        placeholder="Username"
         value={username}
         onChangeText={setUsername}
         placeholderTextColor="#A9A9A9"
@@ -44,10 +44,16 @@ const LoginScreen = ({ onLogin, onRegister }) => {
         onChangeText={setPassword}
         placeholderTextColor="#A9A9A9"
       />
+
       <View style={styles.buttonContainer}>
-        <Button title="Log In" onPress={handleLogin} color="#0F1320" />
-        <Button title="Add User" onPress={onRegister} />  
+        <View style={styles.buttonWrapper}>
+          <Button title="Log In" onPress={handleLogin}  />
+        </View>
+        <View style={styles.buttonWrapper}>
+          <Button title="Add User" onPress={onRegister} color="#0F1320" />
+        </View>
       </View>
+
     </View>
   );
 };
@@ -58,12 +64,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFF',
-    padding: 20,
+    padding: 30,
   },
   title: {
     fontSize: 24,
     color: '#0F1320',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   input: {
     width: '100%',
@@ -71,13 +77,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    marginBottom: 20,
+    marginBottom: 30,
     color: '#0F1320',
   },
   buttonContainer: {
     width: '100%',
     borderRadius: 5,
     overflow: 'hidden',
+  },
+  buttonWrapper: {
+    marginTop: 30, // Add space between buttons
   },
 });
 

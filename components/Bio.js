@@ -15,7 +15,7 @@ const Bio = ({ user }) => {
     <View style={styles.container}>
       <Image source={require('../img/header-image.png')} style={styles.backgroundImage} />
       <View style={styles.card}>
-        <Image source={require('../img/profile.png')} style={styles.profileImage} />
+        <Image source={require('../img/pfp.jpg')} style={styles.profileImage} />
         <View style={styles.textContainer}>
           <Text style={styles.name}>{userName}</Text>
           <Text style={styles.title}>{userType}</Text>

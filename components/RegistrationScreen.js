@@ -10,34 +10,37 @@ const RegistrationScreen = ({ onRegister }) => {
 
   const handleRegister = () => {
     const userData = {
-      username, 
-      password, 
-      email, 
+      username: username,
+      password: password,
+      email: email,
       is_artist: isArtist,
-      bio
+      // bio: bio // Uncomment if you also want to send 'bio'
     };
 
-    fetch('https://jouwnaam.vaw.be/api.php?action=add_post', {
+    const apiUrl = 'https://jouwnaam.vaw.be/api.php'; // Replace with your server's URL
+
+    fetch(apiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(userData),
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+    .then(response => response.text())
+    .then(text => {
+      try {
+        const data = JSON.parse(text);
+        console.log("Parsed data:", data);
+        Alert.alert("Success", "User registered successfully!");
+      } catch (error) {
+        
       }
-      return response.json();
+      onRegister && onRegister(); // Navigate back after registration attempt
     })
-    .then(data => {
-      console.log('Registration successful', data);
-      Alert.alert('Registration Successful', 'Your account has been created.');
-      onRegister(); // Navigate back or update state as necessary
-    })
-    .catch(error => {
-      console.error('Registration failed:', error);
-      Alert.alert('Registration Failed', error.toString());
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      Alert.alert("Error", "But user is there, for some reason..");
+      onRegister && onRegister(); // Navigate back even if there's a fetch error
     });
   };
 
